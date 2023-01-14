@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+//@AllArgsConstructor
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @Document("exam-instances")
 public class ExamInstance {
@@ -23,9 +23,16 @@ public class ExamInstance {
     @Field
     final String studentId;
     @Field
-    final ExamStatus examStatus;
+    ExamStatus examStatus;
     @Field
-    final int score;
+    int score;
     @Field
-    final LocalDateTime startedTime;
+    LocalDateTime startedTime;
+
+    public ExamInstance(String examId, String studentId) {
+        this.examId = examId;
+        this.studentId = studentId;
+        this.examStatus = ExamStatus.AVAILABLE;
+        this.score = 0;
+    }
 }

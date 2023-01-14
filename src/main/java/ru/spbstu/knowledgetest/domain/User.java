@@ -28,5 +28,5 @@ public class User {
     @Field
     final UserRole role;
     @Field
-    final String groupId;
+    final String password;
 }

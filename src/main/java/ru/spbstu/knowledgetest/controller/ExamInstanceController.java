@@ -12,6 +12,10 @@ import ru.spbstu.knowledgetest.enums.ExamStatus;
 import ru.spbstu.knowledgetest.service.ExamInstanceService;
 import ru.spbstu.knowledgetest.util.PaginationUtil;
 
+import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("api/v1/exam-instances")
 @AllArgsConstructor
@@ -49,8 +53,17 @@ public class ExamInstanceController {
     }
 
     @PutMapping
-    @ResponseStatus
     public ExamInstance update(@RequestBody ExamInstance examInstance) {
         return examInstanceService.update(examInstance);
+    }
+
+    @PutMapping("{id}/start")
+    public ExamInstance startExam(@PathVariable("id") String id) {
+        return examInstanceService.startExam(id);
+    }
+
+    @PutMapping("{id}/complete")
+    public ExamInstance completeExam(@PathVariable("id") String id) {
+        return examInstanceService.completeExam(id);
     }
 }
