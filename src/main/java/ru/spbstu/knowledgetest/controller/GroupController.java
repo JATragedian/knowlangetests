@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.spbstu.knowledgetest.domain.Group;
 import ru.spbstu.knowledgetest.service.GroupService;
@@ -32,6 +33,7 @@ public class GroupController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'TEACHER')")
     @ResponseStatus(HttpStatus.CREATED)
     public Group save(@RequestBody Group group) {
         return groupService.save(group);

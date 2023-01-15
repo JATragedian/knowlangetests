@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.spbstu.knowledgetest.domain.Exam;
 import ru.spbstu.knowledgetest.enums.BloomLevel;
@@ -35,6 +36,7 @@ public class ExamController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR', 'TEACHER')")
     @ResponseStatus(HttpStatus.CREATED)
     public Exam save(@RequestBody Exam exam) {
         return examService.save(exam);
@@ -47,7 +49,7 @@ public class ExamController {
     }
 
     @GetMapping("/{id}/questions/levels")
-    public Map<BloomLevel, Long> getQuestionLevels(String id) {
+    public Map<BloomLevel, Long> getQuestionLevels(@PathVariable("id") String id) {
         return examService.getQuestionLevels(id);
     }
 }

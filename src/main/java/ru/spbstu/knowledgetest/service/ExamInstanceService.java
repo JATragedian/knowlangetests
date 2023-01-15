@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import ru.spbstu.knowledgetest.domain.Exam;
 import ru.spbstu.knowledgetest.domain.ExamInstance;
 import ru.spbstu.knowledgetest.enums.ExamStatus;
 import ru.spbstu.knowledgetest.repository.ExamInstanceRepository;
@@ -71,11 +72,15 @@ public class ExamInstanceService {
     }
 
     public ExamInstance save(ExamInstance examInstance) {
+        Exam exam = examService.findById(examInstance.getExamId());
+        if (exam == null) {
+            throw new IllegalArgumentException("Exam does not exists: " + examInstance.getExamId());
+        }
         return examInstanceRepository.save(examInstance);
     }
 
     public ExamInstance update(ExamInstance examInstance) {
         findById(examInstance.getId());
-        return examInstanceRepository.save(examInstance);
+        return save(examInstance);
     }
 }

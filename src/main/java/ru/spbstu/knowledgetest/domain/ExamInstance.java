@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-//@AllArgsConstructor
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @Document("exam-instances")
 public class ExamInstance {

@@ -12,7 +12,6 @@ import java.util.Map;
 @UtilityClass
 public class ResultCalculationUtil {
 
-    @Transactional
     public int getScore(List<Question> questions, List<Answer> answers) {
         int points = 0;
         int maxPoints = 0;

@@ -19,35 +19,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfiguration {
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        return new AuthUserService();
-    }
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeHttpRequests((requests) -> requests
-//                        .anyRequest().authenticated()
-//                )
-//                .formLogin(withDefaults())
-//                .httpBasic(withDefaults());
-////                .formLogin((form) -> form
-////                        .loginPage("/login")
-////                        .permitAll()
-////                )
-////                .logout(LogoutConfigurer::permitAll);
-//
-//
-//
-//        return http.build();
-//    }
-
-    @Bean
     @Order(1)
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         http
@@ -58,6 +29,16 @@ public class SecurityConfiguration {
                 .httpBasic(withDefaults())
                 .csrf().disable();
         return http.build();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new AuthUserService();
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
