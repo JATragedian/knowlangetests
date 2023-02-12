@@ -50,11 +50,12 @@ class AnswerServiceTest {
 
     @Test
     void save() {
-        answerRepository.save(new Answer(
-                "questionId1",
-                "examInstanceId1",
-                "content_new"
-        ));
+        Answer answer = new Answer();
+        answer.setQuestionId("questionId1");
+        answer.setExamInstanceId("examInstanceId1");
+        answer.setContent("content_new");
+
+        answerRepository.save(answer);
 
         assertEquals(1, answerRepository.count());
     }
@@ -62,12 +63,12 @@ class AnswerServiceTest {
     @Test
     void update() {
         Answer answer = createAnswer();
-        Answer updatedAnswer = new Answer(
-                "questionId1",
-                "examInstanceId1",
-                "content_new"
-        );
+        Answer updatedAnswer = new Answer();
+        updatedAnswer.setQuestionId("questionId1");
+        updatedAnswer.setExamInstanceId("examInstanceId1");
+        updatedAnswer.setContent("content_new");
         updatedAnswer.setId(answer.getId());
+
         Answer fetchedAnswer = answerService.update(updatedAnswer);
 
         assertEquals(1, answerRepository.count());
@@ -75,10 +76,11 @@ class AnswerServiceTest {
     }
 
     private Answer createAnswer() {
-        return answerRepository.save(new Answer(
-                "questionId1",
-                "examInstanceId1",
-                "content"
-        ));
+        Answer answer = new Answer();
+        answer.setQuestionId("questionId1");
+        answer.setExamInstanceId("examInstanceId1");
+        answer.setContent("content");
+
+        return answerRepository.save(answer);
     }
 }

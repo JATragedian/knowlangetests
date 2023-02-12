@@ -12,15 +12,16 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @FieldDefaults(level= AccessLevel.PRIVATE)
+@NoArgsConstructor
 @Document("exam-instances")
 public class ExamInstance {
 
     @Id
     String id;
     @Field
-    final String examId;
+    String examId;
     @Field
-    final String studentId;
+    String studentId;
     @Field
     ExamStatus examStatus;
     @Field

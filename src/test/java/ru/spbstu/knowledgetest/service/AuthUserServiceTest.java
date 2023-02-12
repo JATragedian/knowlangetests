@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import ru.spbstu.knowledgetest.domain.User;
 import ru.spbstu.knowledgetest.enums.UserRole;
 import ru.spbstu.knowledgetest.repository.UserRepository;
@@ -28,13 +29,14 @@ class AuthUserServiceTest {
 
     @Test
     void loadUserByUsername() {
-        userRepository.save(new User(
-                "name",
-                "surname",
-                "email",
-                UserRole.ADMINISTRATOR,
-                "password"
-        ));
+        User user = new User();
+        user.setName("name");
+        user.setSurname("surname");
+        user.setEmail("email");
+        user.setRole(UserRole.ADMINISTRATOR);
+        user.setPassword("password");
+
+        userRepository.save(user);
 
         UserDetails userDetails = authUserService.loadUserByUsername("email");
 

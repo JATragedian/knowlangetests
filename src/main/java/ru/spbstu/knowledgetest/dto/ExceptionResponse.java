@@ -11,17 +11,17 @@ import java.time.LocalDateTime;
 public class ExceptionResponse {
 
     String message;
-    LocalDateTime time;
+    String time;
 
     static String DEFAULT_MESSAGE = "Something went wrong during request processing";
 
     public ExceptionResponse() {
         this.message = DEFAULT_MESSAGE;
-        this.time = LocalDateTime.now();
+        this.time = LocalDateTime.now().toString();
     }
 
     public ExceptionResponse(String message) {
         this.message = message;
-        this.time = LocalDateTime.now();
+        this.time = LocalDateTime.now().toString();
     }
 }

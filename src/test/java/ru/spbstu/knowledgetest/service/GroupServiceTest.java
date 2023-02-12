@@ -53,10 +53,11 @@ class GroupServiceTest {
 
     @Test
     void save() {
-        groupRepository.save(new Group(
-                "group",
-                List.of("1", "2")
-        ));
+        Group group = new Group();
+        group.setName("group");
+        group.setUserIds(List.of("1", "2"));
+
+        groupRepository.save(group);
 
         assertEquals(1, groupRepository.count());
     }
@@ -64,10 +65,9 @@ class GroupServiceTest {
     @Test
     void update() {
         Group group = createGroup();
-        Group updatedGroup = new Group(
-                "new_name",
-                List.of("1")
-        );
+        Group updatedGroup = new Group();
+        updatedGroup.setName("new_name");
+        updatedGroup.setUserIds(List.of("1"));
         updatedGroup.setId(group.getId());
         Group fetchedGroup = groupService.update(updatedGroup);
 
@@ -76,9 +76,10 @@ class GroupServiceTest {
     }
 
     private Group createGroup() {
-        return groupRepository.save(new Group(
-                "group",
-                List.of("1", "2")
-        ));
+        Group group = new Group();
+        group.setName("group");
+        group.setUserIds(List.of("1", "2"));
+
+        return groupRepository.save(group);
     }
 }

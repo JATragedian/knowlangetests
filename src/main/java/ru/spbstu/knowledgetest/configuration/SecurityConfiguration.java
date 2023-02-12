@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -22,11 +21,15 @@ public class SecurityConfiguration {
     @Order(1)
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors()
+                .and()
                 .securityMatcher("/api/**", "/swagger-ui/**")
                 .authorizeHttpRequests(authorize -> authorize
                         .anyRequest().hasAuthority(UserRole.ADMINISTRATOR.name())
                 )
-                .httpBasic(withDefaults())
+//                .httpBasic(withDefaults())
+                .formLogin().loginProcessingUrl("/do-login")
+                .and()
                 .csrf().disable();
         return http.build();
     }
@@ -44,10 +47,13 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain formLoginFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors()
+                .and()
                 .authorizeHttpRequests(authorize -> authorize
                         .anyRequest().authenticated()
                 )
-                .formLogin(withDefaults())
+                .formLogin().loginProcessingUrl("/do-login")
+                .and()
                 .csrf().disable();
         return http.build();
     }

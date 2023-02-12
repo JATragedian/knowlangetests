@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import ru.spbstu.knowledgetest.domain.Exam;
 import ru.spbstu.knowledgetest.domain.Question;
+import ru.spbstu.knowledgetest.dto.QuestionStatistics;
 import ru.spbstu.knowledgetest.enums.BloomLevel;
 import ru.spbstu.knowledgetest.enums.QuestionType;
 import ru.spbstu.knowledgetest.repository.ExamRepository;
@@ -56,19 +57,18 @@ class ExamServiceTest {
 
     @Test
     void save() {
-        examRepository.save(new Exam(
-                "exam",
-                "ownerId",
-                "description",
-                60,
-                List.of(new Question(
-                        "content",
-                        QuestionType.SINGLE,
-                        BloomLevel.KNOWLEDGE,
-                        5,
-                        List.of("true")
-                )))
-        );
+        Question question = new Question();
+        question.setContent("content");
+        question.setType(QuestionType.SINGLE);
+        question.setLevel(BloomLevel.KNOWLEDGE);
+        question.setWeight(5);
+        question.setCorrectAnswers(List.of("true"));
+
+        examRepository.save(
+                createExam("exam", List.of(
+                        createQuestion(BloomLevel.KNOWLEDGE, 5,
+                                List.of("true"))
+                )));
 
         assertEquals(1, examRepository.count());
     }
@@ -76,19 +76,11 @@ class ExamServiceTest {
     @Test
     void update() {
         Exam exam = createExam();
-        Exam updatedExam = new Exam(
-                "new_name",
-                "ownerId",
-                "description",
-                60,
-                List.of(new Question(
-                        "content",
-                        QuestionType.SINGLE,
-                        BloomLevel.KNOWLEDGE,
-                        5,
-                        List.of("true")
-                ))
-        );
+
+        Exam updatedExam = createExam("new_name",
+                List.of(createQuestion(BloomLevel.KNOWLEDGE, 5,
+                        List.of("true"))));
+
         updatedExam.setId(exam.getId());
         Exam fetchedExam = examService.update(updatedExam);
 
@@ -99,29 +91,54 @@ class ExamServiceTest {
     @Test
     void getQuestionLevels() {
         Exam exam = createExam();
-        Map<BloomLevel, Long> questionLevels = examService.getQuestionLevels(exam.getId());
+        List<QuestionStatistics> questionLevels = examService.getQuestionLevels(exam.getId());
 
-        assertEquals(1, questionLevels.get(BloomLevel.KNOWLEDGE));
-        assertEquals(1, questionLevels.get(BloomLevel.ANALYSIS));
-        assertEquals(0, questionLevels.get(BloomLevel.SYNTHESIS));
+        assertEquals(6, questionLevels.size());
+        for (QuestionStatistics statistics : questionLevels) {
+            if (statistics.getLabel().equals("Knowledge")) {
+                assertEquals(50.0, statistics.getY());
+            }
+            if (statistics.getLabel().equals("Analysis")) {
+                assertEquals(50.0, statistics.getY());
+            }
+            if (statistics.getLabel().equals("Synthesis")) {
+                assertEquals(0.0, statistics.getY());
+            }
+        }
+    }
+
+    private Exam createExam(String name, List<Question> questions) {
+        Exam exam = new Exam();
+        exam.setName(name);
+        exam.setOwnerId("ownerId");
+        exam.setDescription("description");
+        exam.setTimeLimit(60);
+        exam.setQuestions(questions);
+        return exam;
+    }
+
+    private Question createQuestion(
+            BloomLevel level, int weight, List<String> correctAnswers
+    ) {
+        Question question = new Question();
+        question.setContent("content");
+        question.setType(QuestionType.SINGLE);
+        question.setLevel(level);
+        question.setWeight(weight);
+        question.setCorrectAnswers(correctAnswers);
+        return question;
     }
 
     private Exam createExam() {
-        return examRepository.save(new Exam(
+        return examRepository.save(createExam(
                 "exam",
-                "ownerId",
-                "description",
-                60,
-                List.of(new Question(
-                                "content",
-                                QuestionType.SINGLE,
+                List.of(
+                        createQuestion(
                                 BloomLevel.KNOWLEDGE,
                                 5,
                                 List.of("true")
                         ),
-                        new Question(
-                                "content",
-                                QuestionType.SINGLE,
+                        createQuestion(
                                 BloomLevel.ANALYSIS,
                                 7,
                                 List.of("true")

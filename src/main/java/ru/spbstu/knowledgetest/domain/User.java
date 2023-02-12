@@ -1,9 +1,6 @@
 package ru.spbstu.knowledgetest.domain;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,7 +9,7 @@ import ru.spbstu.knowledgetest.enums.UserRole;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @Document("users")
 public class User {
@@ -20,13 +17,13 @@ public class User {
     @Id
     String id;
     @Field
-    final String name;
+    String name;
     @Field
-    final String surname;
+    String surname;
     @Field
-    final String email;
+    String email;
     @Field
-    final UserRole role;
+    UserRole role;
     @Field
-    final String password;
+    String password;
 }

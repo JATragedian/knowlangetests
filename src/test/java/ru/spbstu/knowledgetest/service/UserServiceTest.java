@@ -50,13 +50,14 @@ class UserServiceTest {
 
     @Test
     void save() {
-        userService.save(new User(
-                "name",
-                "surname",
-                "email",
-                UserRole.STUDENT,
-                "pass"
-        ));
+        User user = new User();
+        user.setName("name");
+        user.setSurname("surname");
+        user.setEmail("email");
+        user.setRole(UserRole.STUDENT);
+        user.setPassword("pass");
+
+        userService.save(user);
 
         assertEquals(1, userRepository.count());
     }
@@ -64,13 +65,14 @@ class UserServiceTest {
     @Test
     void update() {
         User user = createUser();
-        User updatedUser = new User(
-                "new_name",
-                "surname",
-                "email",
-                UserRole.STUDENT,
-                "pass"
-        );
+
+        User updatedUser = new User();
+        updatedUser.setName("new_name");
+        updatedUser.setSurname("surname");
+        updatedUser.setEmail("email");
+        updatedUser.setRole(UserRole.STUDENT);
+        updatedUser.setPassword("pass");
+
         updatedUser.setId(user.getId());
         User fetchedUser = userService.update(updatedUser);
 
@@ -79,12 +81,13 @@ class UserServiceTest {
     }
 
     private User createUser() {
-        return userRepository.save(new User(
-                "name",
-                "surname",
-                "email",
-                UserRole.STUDENT,
-                "pass"
-        ));
+        User user = new User();
+        user.setName("name");
+        user.setSurname("surname");
+        user.setEmail("email");
+        user.setRole(UserRole.STUDENT);
+        user.setPassword("pass");
+
+        return userRepository.save(user);
     }
 }

@@ -3,6 +3,7 @@ package ru.spbstu.knowledgetest.controller;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -35,8 +36,12 @@ public class UserController {
 
     @GetMapping
     public Page<User> findAll(
-            @RequestParam(required = false) Integer page, @RequestParam(required = false) Integer size
+            @RequestParam(required = false) Integer page, @RequestParam(required = false) Integer size,
+            @RequestParam(required = false) String role
     ) {
+        if (StringUtils.isNotBlank(role)) {
+            return userService.findAllByRole(role, paginationUtil.of(page, size));
+        }
         return userService.findAll(paginationUtil.of(page, size));
     }
 

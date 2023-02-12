@@ -1,19 +1,17 @@
 package ru.spbstu.knowledgetest.domain;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Document("exams")
 public class Exam {
@@ -21,13 +19,13 @@ public class Exam {
     @Id
     String id;
     @Field
-    final String name;
+    String name;
     @Field
-    final String ownerId;
+    String ownerId;
     @Field
-    final String description;
+    String description;
     @Field
-    final int timeLimit;
+    int timeLimit;
     @Field
-    final List<Question> questions;
+    List<Question> questions;
 }

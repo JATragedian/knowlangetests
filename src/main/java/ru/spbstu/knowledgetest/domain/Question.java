@@ -1,6 +1,9 @@
 package ru.spbstu.knowledgetest.domain;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,7 +15,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @Document("questions")
 public class Question {
@@ -20,13 +23,13 @@ public class Question {
     @Id
     String id;
     @Field
-    final String content;
+    String content;
     @Field
-    final QuestionType type;
+    QuestionType type;
     @Field
-    final BloomLevel level;
+    BloomLevel level;
     @Field
-    final int weight;
+    int weight;
     @Field
-    final List<String> correctAnswers;
+    List<String> correctAnswers;
 }

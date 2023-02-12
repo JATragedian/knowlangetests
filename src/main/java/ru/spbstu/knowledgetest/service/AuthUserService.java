@@ -22,13 +22,14 @@ public class AuthUserService implements UserDetailsService {
     @PostConstruct
     private void setupAdminUser() {
         if (userRepository.count() == 0) {
-            userRepository.save(new User(
-                    "Administrator",
-                    "System-account",
-                    "admin@admin.com",
-                    UserRole.ADMINISTRATOR,
-                    new BCryptPasswordEncoder().encode("admin")
-            ));
+            User defaultUser = new User();
+            defaultUser.setName("Administrator");
+            defaultUser.setSurname("System-account");
+            defaultUser.setEmail("admin@admin.com");
+            defaultUser.setRole(UserRole.ADMINISTRATOR);
+            defaultUser.setPassword(new BCryptPasswordEncoder().encode("admin"));
+
+            userRepository.save(defaultUser);
         }
     }
 

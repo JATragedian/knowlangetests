@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ru.spbstu.knowledgetest.domain.Exam;
 import ru.spbstu.knowledgetest.domain.ExamInstance;
@@ -13,6 +14,7 @@ import ru.spbstu.knowledgetest.repository.ExamInstanceRepository;
 import ru.spbstu.knowledgetest.util.ResultCalculationUtil;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -52,14 +54,8 @@ public class ExamInstanceService {
         return examInstanceRepository.findAllByStudentId(studentId, pageable);
     }
 
-    public Page<ExamInstance> findAllByStudentIdAndExamStatus(String studentId, String examStatus, Pageable pageable) {
-        ExamStatus examStatusEnumValue;
-        try {
-            examStatusEnumValue = ExamStatus.valueOf(examStatus);
-        } catch (IllegalArgumentException | NullPointerException e) {
-            throw new IllegalArgumentException("Unknown exam status: " + examStatus);
-        }
-        return examInstanceRepository.findAllByStudentIdAndExamStatus(studentId, examStatusEnumValue, pageable);
+    public Page<ExamInstance> findAllByStudentIdAndExamId(String studentId, String examId, Pageable pageable) {
+        return examInstanceRepository.findAllByStudentIdAndExamId(studentId, examId, pageable);
     }
 
     public Page<ExamInstance> findAll(Pageable pageable) {

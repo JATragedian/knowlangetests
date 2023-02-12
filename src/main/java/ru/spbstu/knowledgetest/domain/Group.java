@@ -2,7 +2,7 @@ package ru.spbstu.knowledgetest.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.annotation.Id;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @Document("groups")
 public class Group {
@@ -21,7 +21,7 @@ public class Group {
     @Id
     String id;
     @Field
-    final String name;
+    String name;
     @Field
-    final List<String> userIds;
+    List<String> userIds;
 }
