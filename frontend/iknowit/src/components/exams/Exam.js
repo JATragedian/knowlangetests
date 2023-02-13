@@ -13,10 +13,10 @@ class Exam extends React.Component {
             <tr key={this.props.exam.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{this.props.exam.name}</td>
                 <td>{this.props.exam.description}</td>
-                <td>{this.getMinutes(this.props.exam.timeLimit)} min</td>
+                <td>{this.getMinutes(this.props.exam.timeLimit)} мин</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="secondary" tag={Link} to={"/user/" + this.props.exam.id}>View</Button>
+                        <Button size="sm" color="secondary" tag={Link} to={"/user/" + this.props.exam.id}>Открыть</Button>
                     </ButtonGroup>
                 </td>
             </tr>

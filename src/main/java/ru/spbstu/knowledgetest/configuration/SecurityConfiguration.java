@@ -27,7 +27,6 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .anyRequest().hasAuthority(UserRole.ADMINISTRATOR.name())
                 )
-//                .httpBasic(withDefaults())
                 .formLogin().loginProcessingUrl("/do-login")
                 .and()
                 .csrf().disable();

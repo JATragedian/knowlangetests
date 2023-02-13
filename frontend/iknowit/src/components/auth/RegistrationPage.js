@@ -52,7 +52,7 @@ class RegistrationPage extends Component {
     render() {
         return (
             <>
-                <Header title={"Register"}/>
+                <Header title={"Регистрация"}/>
                 <form className="form-layout" onSubmit={this.handleRegister}>
                     <input name="name" type="text" placeholder="Name"
                            value={this.state.name} onChange={this.handleChange} className="submit-text"/>

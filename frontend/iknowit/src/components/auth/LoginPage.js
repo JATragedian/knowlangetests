@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import { withRouter } from 'react-router-dom';
+import React, {Component} from "react";
+import {withRouter} from 'react-router-dom';
 import Header from "../header/Header";
+import {Button, ButtonGroup} from "reactstrap";
 
 class LoginPage extends Component {
 
@@ -54,15 +55,24 @@ class LoginPage extends Component {
     render() {
         return (
             <>
-                <Header title={"Login"}/>
-                <form className="form-layout" onSubmit={this.handleLogin}>
-                    <input name="email" type="text" placeholder="Email" value={this.state.email}
-                           onChange={this.handleChange} className="submit-text"/>
-                    <input name="password" type="text" placeholder="Password" value={this.state.password}
-                           onChange={this.handleChange} className="submit-text"/>
-                    <button className="submit-button">Log-in</button>
-                </form>
-                <button className="submit-button" onClick={() => this.handleRegister()}>Register</button>
+                <Header title={"Логин"}/>
+                <div className="form-group">
+                    <label htmlFor="exampleInputEmail1">Email</label>
+                    <input type="email" className="form-control" onChange={this.handleChange}
+                           aria-describedby="emailHelp" placeholder="Email" value={this.state.email}/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="exampleInputPassword1">Пароль</label>
+                    <input type="password" className="form-control"
+                           placeholder="Пароль" value={this.state.password}/>
+                </div>
+                <ButtonGroup>
+                    <Button color="secondary" onClick={() => this.handleLogin}>Вход</Button>
+                </ButtonGroup>
+                <hr className="my-4"/>
+                <ButtonGroup>
+                    <Button color="secondary" onClick={() => this.handleRegister}>Регистрация</Button>
+                </ButtonGroup>
             </>
         )
     }

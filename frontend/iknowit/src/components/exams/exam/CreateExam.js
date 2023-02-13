@@ -26,22 +26,22 @@ class CreateExam extends React.Component {
                 exportEnabled: false,
                 animationEnabled: true,
                 title: {
-                    text: "Questions by Bloom Level"
+                    text: "Уровни вопросов"
                 },
                 data: [{
                     type: "pie",
                     startAngle: 100,
                     indexLabelFontSize: 16,
                     indexLabel: "{label} - {y}%",
-                    // dataPoints: []
-                    dataPoints: [
-                        { y: 6, label: "Knowledge" },
-                        { y: 26, label: "Comprehension" },
-                        { y: 37, label: "Application" },
-                        { y: 5, label: "Analysis" },
-                        { y: 4, label: "Synthesis" },
-                        { y: 22, label: "Evaluation" }
-                    ]
+                    dataPoints: []
+                    // dataPoints: [
+                    //     { y: 6, label: "Знания" },
+                    //     { y: 26, label: "Понимание" },
+                    //     { y: 37, label: "Применение" },
+                    //     { y: 5, label: "Анализ" },
+                    //     { y: 4, label: "Ситез" },
+                    //     { y: 22, label: "Оценка" }
+                    // ]
                 }]
             }
         };
@@ -71,20 +71,20 @@ class CreateExam extends React.Component {
         return (
             <>
                 <div className="flex-fill">
-                    <Header title={"Create new exam"}/>
+                    <Header title={"Создать новый экзамен"}/>
                     <div className="form-group">
-                        <label>Exam name</label>
+                        <label>Название экзамена</label>
                         <input type="text" className="form-control" aria-describedby="emailHelp"
-                               placeholder="Exam name"/>
+                               placeholder="Название экзамена"/>
                     </div>
                     <div className="form-group">
-                        <label>Description</label>
-                        <input type="text" className="form-control" placeholder="Description"/>
+                        <label>Описание</label>
+                        <input type="text" className="form-control" placeholder="Описание"/>
                     </div>
                     <div className="form-group">
-                        <label>Time limit</label>
-                        <input type="text" className="form-control" placeholder="Time limit"/>
-                        <small id="emailHelp" className="form-text text-muted">In minutes, without unit</small>
+                        <label>Лимит времени</label>
+                        <input type="text" className="form-control" placeholder="Лимит времени"/>
+                        <small id="emailHelp" className="form-text text-muted">В минутах, без единиц измерения</small>
                     </div>
 
                     {stat}
@@ -92,51 +92,51 @@ class CreateExam extends React.Component {
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th className="text-center" width="100%">Questions</th>
+                            <th className="text-center" width="100%">Вопросы</th>
                         </tr>
                         </thead>
                     </Table>
 
-                    <>
-                        <div className="alert alert-info" role="alert">
-                            <label>Question type</label>
-                            <div className="form-group">
-                                <select className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                    <option selected>Choose...</option>
-                                    <option value="1">Open text</option>
-                                    <option value="2">Select</option>
-                                    <option value="3">Code</option>
-                                </select>
-                            </div>
-                            <div className="form-group">
-                                <label>Bloom level</label>
-                                <select className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                    <option selected>Choose...</option>
-                                    <option value="1">Knowledge</option>
-                                    <option value="2">Comprehension</option>
-                                    <option value="3">Application</option>
-                                    <option value="4">Analysis</option>
-                                    <option value="5">Synthesis</option>
-                                    <option value="6">Evaluation</option>
-                                </select>
-                            </div>
-                            <div className="form-group">
-                                <label>Weight</label>
-                                <input type="text" className="form-control" placeholder="Question weight"/>
-                            </div>
-                            <hr className="my-4"/>
-                            <div className="form-group">
-                                <label>Question content</label>
-                                <input type="text" className="form-control" aria-describedby="emailHelp"
-                                       placeholder="Question content"/>
-                            </div>
-                            <div className="form-group">
-                                <label>Correct answers</label>
-                                <input type="text" className="form-control" aria-describedby="emailHelp"
-                                       placeholder="Correct answers"/>
-                            </div>
-                        </div>
-                    </>
+                    {/*<>*/}
+                    {/*    <div className="alert alert-info" role="alert">*/}
+                    {/*        <label>Тип вопроса</label>*/}
+                    {/*        <div className="form-group">*/}
+                    {/*            <select className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">*/}
+                    {/*                <option selected>Выберите...</option>*/}
+                    {/*                <option value="1">С текстовым ответом</option>*/}
+                    {/*                <option value="2">С выбором вариантов</option>*/}
+                    {/*                <option value="3">Код</option>*/}
+                    {/*            </select>*/}
+                    {/*        </div>*/}
+                    {/*        <div className="form-group">*/}
+                    {/*            <label>Уровень вопроса</label>*/}
+                    {/*            <select className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">*/}
+                    {/*                <option selected>Выберите...</option>*/}
+                    {/*                <option value="1">Знания</option>*/}
+                    {/*                <option value="2">Понимание</option>*/}
+                    {/*                <option value="3">Применение</option>*/}
+                    {/*                <option value="4">Анализ</option>*/}
+                    {/*                <option value="5">Синтез</option>*/}
+                    {/*                <option value="6">Оценка</option>*/}
+                    {/*            </select>*/}
+                    {/*        </div>*/}
+                    {/*        <div className="form-group">*/}
+                    {/*            <label>Вес вопроса</label>*/}
+                    {/*            <input type="text" className="form-control" placeholder="Вес вопроса"/>*/}
+                    {/*        </div>*/}
+                    {/*        <hr className="my-4"/>*/}
+                    {/*        <div className="form-group">*/}
+                    {/*            <label>Текст вопроса</label>*/}
+                    {/*            <input type="text" className="form-control" aria-describedby="emailHelp"*/}
+                    {/*                   placeholder="Текст вопроса"/>*/}
+                    {/*        </div>*/}
+                    {/*        <div className="form-group">*/}
+                    {/*            <label>Правильные ответы</label>*/}
+                    {/*            <input type="text" className="form-control" aria-describedby="emailHelp"*/}
+                    {/*                   placeholder="Правильные ответы"/>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</>*/}
 
                     <button type="button" onClick={this.createNewQuestion} className="btn btn-secondary btn-lg btn-block">+</button>
                 </div>
@@ -144,7 +144,7 @@ class CreateExam extends React.Component {
                 <footer className="footer mt-auto py-3 bg-light">
                     <div className="container">
                         <span className="text-light">
-                            <Button color="secondary">Save</Button>
+                            <Button color="secondary">Сохранить</Button>
                         </span>
                     </div>
                 </footer>

@@ -29,12 +29,12 @@ class Students extends Users {
 
         return (
             <>
-                <Header title={"Students"}/>
+                <Header title={"Студенты"}/>
                 <Table className="mt-4">
                     <thead>
                     <tr>
                         <th width="5%"/>
-                        <th width="25%">Name</th>
+                        <th width="25%">Имя</th>
                         <th width="25%">Email</th>
                         <th width="20%"/>
                     </tr>

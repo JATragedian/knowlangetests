@@ -59,14 +59,14 @@ class Exams extends React.Component {
 
         return (
             <>
-                <Header title={"Exams"}/>
-                <button type="button" onClick={this.navigateToCreatePage} className="btn btn-secondary btn-lg btn-block">Create new exam</button>
+                <Header title={"Экзамены"}/>
+                <button type="button" onClick={this.navigateToCreatePage} className="btn btn-secondary btn-lg btn-block">Создать новый экзамен</button>
                 <Table className="mt-4">
                     <thead>
                     <tr>
-                        <th width="25%">Name</th>
-                        <th width="25%">Description</th>
-                        <th width="20%">Time limit</th>
+                        <th width="25%">Название</th>
+                        <th width="25%">Описание</th>
+                        <th width="20%">Лимит времени</th>
                         <th width="20%"/>
                     </tr>
                     </thead>

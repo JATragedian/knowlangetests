@@ -58,14 +58,14 @@ class Users extends React.Component {
 
         return (
             <>
-                <Header title={"Users"}/>
+                <Header title={"Пользователи"}/>
                 <Table className="mt-4">
                     <thead>
                     <tr>
                         <th width="5%"/>
-                        <th width="25%">Name</th>
+                        <th width="25%">Имя</th>
                         <th width="25%">Email</th>
-                        <th width="25%">Role</th>
+                        <th width="25%">Роль</th>
                         <th width="20%"/>
                     </tr>
                     </thead>

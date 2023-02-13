@@ -19,7 +19,7 @@ class User extends React.Component {
                 <td style={{textTransform: 'capitalize'}}>{this.props.user.role.toLowerCase()}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="secondary" tag={Link} to={"/user/" + this.props.user.id}>View</Button>
+                        <Button size="sm" color="secondary" tag={Link} to={"/user/" + this.props.user.id}>Открыть</Button>
                     </ButtonGroup>
                 </td>
             </tr>

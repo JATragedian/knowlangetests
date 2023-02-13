@@ -53,15 +53,15 @@ class MyExams extends React.Component {
 
         return (
             <>
-                <Header title={"My Exams"}/>
+                <Header title={"Мои экзамены"}/>
                 <Table className="mt-4">
                     <thead>
                     <tr>
-                        <th width="20%">Name</th>
-                        <th width="25%">Description</th>
-                        <th width="20%">Time limit</th>
-                        <th width="15%">Last result</th>
-                        <th width="15%">Best result</th>
+                        <th width="20%">Название</th>
+                        <th width="25%">Описание</th>
+                        <th width="20%">Лимит времени</th>
+                        <th width="15%">Последний результат</th>
+                        <th width="15%">Лучший результат</th>
                         <th width="5%"/>
                     </tr>
                     </thead>
